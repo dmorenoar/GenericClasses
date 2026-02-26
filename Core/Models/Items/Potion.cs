@@ -1,13 +1,16 @@
-﻿using System;
+﻿using GenericClasses.Core.Inferfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GenericClasses.Core.Models.Items
 {
-    public class Potion: Item
+    public class Potion: Item, IBuy
     {
         public PotionType Type { get; }
         public int EffectValue { get; }
+
+        public int MinPrice => 10;
 
         public Potion(string name, int effectValue, PotionType type) : base(name)
         {
@@ -20,5 +23,9 @@ namespace GenericClasses.Core.Models.Items
             return $"Id: {Id}, Potion: {Name}, Effect Value: {EffectValue}, Type: {Type}";
         }
 
+        public int CalcPrice()
+        {
+            return MinPrice * 10;
+        }
     }
 }
